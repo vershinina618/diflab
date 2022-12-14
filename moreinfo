@@ -1,4 +1,4 @@
-//srs/Components/MoreInfo
+//srs/Components/MoreInfo Хуки и функциональные компоненты
 import React from "react";
 import { useState } from 'react';
 
