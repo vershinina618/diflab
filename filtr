@@ -1,1 +1,58 @@
+//Filtr.tsx App return <Filter></Filter>
+import React, {FormEvent} from 'react';
+import { useState } from 'react';
 
+enum Filtration {
+    ALL = "Все",
+    EVEN = "Четные",
+    ODD = "Нечетные",
+}
+export function Filter({}) {
+    //хуки
+    const [input, setInput] = useState("");
+    const [filter, setFilter] = useState("");
+    const [numbers, setNumbers] = useState<number[]>([]);
+
+    const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); //Форма без перезагрузки
+        setInput("");
+        setNumbers([...numbers, Number(input)]);
+        setFilter(Filtration.ALL);
+    }
+
+    function getFiltered(){
+        switch (filter) {
+            case Filtration.ODD:
+                return numbers.filter(it => it % 2 !== 0);
+            case Filtration.EVEN:
+                return numbers.filter(it => it % 2 === 0);
+            case Filtration.ALL:
+                return numbers;
+            default:
+                return numbers;
+        }
+    }
+
+
+    return <div>
+        <form onSubmit={submitHandler}>
+            <input value={input} onChange={e => setInput(e.target.value)}/>
+            <button type="submit" >+</button>
+        </form>
+
+        <br/>
+        {Object.values(Filtration).map(filterValue =>
+            <label>
+                <input
+                    checked={filter === filterValue}
+                    type="radio"
+                    onChange={() => setFilter(filterValue)}
+                    />
+                {filterValue}
+            </label>
+        )}
+        <br/>
+        {getFiltered()?.join('\r\n')}
+    </div>;
+
+}
