@@ -1,0 +1,30 @@
+import React from 'react';
+import { useState, useEffect } from 'react'
+
+type AlertProps = {
+    text: string;
+    delay: number;
+}
+
+export function Alert({text, delay}: AlertProps) {
+    const [show, setShow] = useState(true)
+
+    useEffect(() => {
+        const timeId = setTimeout(() => {
+            setShow(false)
+        }, delay*1000)
+
+        return () => {
+            clearTimeout(timeId)
+        }
+    }, []);
+
+    if (!show) {
+        return null;
+    }
+
+    return <div style={{color: "red"}}> <b>{text}</b></div>;
+    return <div><Alert text={"Волк украл зайчат"} delay={5}></Alert></div>
+}
+
+//
