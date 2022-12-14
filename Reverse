@@ -1,0 +1,19 @@
+import React from 'react';
+import {useState} from 'react'
+
+
+type ComponentProps = {
+    text: string
+}
+
+export function Revers({text}: ComponentProps) {
+    const [t, setT] = useState(text);
+
+    return <div>
+        <div>{t} <button onClick={() => setT(t.split('').reverse().join(''))}>перевернуть</button></div>
+
+    </div>;
+}
+
+
+/// return <Revers text={"Привет!"}></Revers>
