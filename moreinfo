@@ -1,0 +1,30 @@
+//srs/Components/MoreInfo
+import React from "react";
+import { useState } from 'react';
+
+type MoreInfoProps = {
+    shortText: string;
+    text: string
+}
+
+export default function MoreInfo({shortText, text}: MoreInfoProps){
+    const [more, setMore] = useState(false);
+
+    return <div>
+        <text>{shortText}</text>
+        <text>{more ? text: ''}</text>
+        <span style={{color: "purple"}} onClick={() => setMore(!more)}>{more ? 'hide' : ' more' }</span>
+    </div>;
+}
+
+app.tsx
+import React from 'react';
+import MoreInfo from "./Component/MoreInfo";
+
+function App() {
+
+    //return<></>;
+    return <MoreInfo shortText={"Лицензионное соглашение "} text={"Настоящее соглашение дает вам нижеследующие права.."}></MoreInfo>;
+}
+
+export default App;
