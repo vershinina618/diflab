@@ -1,0 +1,23 @@
+import React from 'react';
+import { useState } from 'react'
+
+
+export function Counter({}) {
+    const [number, setNum] = useState(0);
+    const [sum, setSum] = useState(1);
+
+
+    return <div>
+        <p>Текущее значение: {number} <button onClick={() => setNum(number+sum)}>+</button></p>
+        <div>
+            <p>Увеличивать каждый раз на {sum} </p>
+            <input
+                type={"range"}
+                onChange={e =>setSum(Number(e.target.value))}
+                min={1} max={100}
+                value={sum}
+                step={1}
+            />
+        </div>
+    </div>;
+}
