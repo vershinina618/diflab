@@ -1,0 +1,42 @@
+import React from "react";
+import {FormEvent, useState} from "react";
+
+type Result = {
+    userId: string;
+    id: string;
+    title: string;
+    body: string;
+
+} | undefined;
+
+const URL = "https://jsonplaceholder.typicode.com/todos";
+
+
+export function Get() {
+    const[id, setId] = useState("");
+    const [result, setResult] = useState<Result>();
+    const handleSubmit =  async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const response = await fetch (`${URL}/${id}`);
+        const data = await response.json();
+        console.log(data);
+        setResult(data);
+
+
+    };
+
+
+    return<>
+        <h3>Home</h3>
+        <div>
+            <form onSubmit={handleSubmit} >
+                <input type="text" value={id} onChange={e => setId(e.target.value)}/>
+                <button>send</button>
+                {result && <div>
+                    <b>{result?.title}</b><br/>
+                    {result?.body}
+                </div>}
+            </form>
+        </div>
+    </>;
+}
