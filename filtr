@@ -52,7 +52,7 @@ export function Filter({}) {
             </label>
         )}
         <br/>
-        {getFiltered()?.join('\r\n')}
+        <ul>{getFiltered()?.map(item => <li>{item}</li>)}</ul>
     </div>;
 
 }
