@@ -14,9 +14,6 @@ export function Fibonacci(){
             }, 1000);
     },[])
 
-    function getFiltered(){
-        return numbers;
-    }
 
     return<>
         {numbers.join(", ")}
